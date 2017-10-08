@@ -1,0 +1,6 @@
+create table route(trip_id varchar(20) primary key,source varchar(20),destination varchar(20),J_hrs float,J_distance float);
+create table schedule (t_time float,trip_id varchar(20),t_day varchar(10),primary key(t_time,trip_id,t_day),foreign key(trip_id) references route);
+create table salary(paygrade varchar(10) primary key,salary float);
+create table employee(emp_id varchar(20) primary key,designation varchar(20),paygrade varchar(10),Ename varchar(20),address varchar(40),dob date,foreign key(paygrade) references salary);
+create table bus(busno varchar(20) primary key,no_seats int,company varchar(20),model varchar(20));
+create table trip(trip_id varchar(20),driver_id varchar(20),conductor_id varchar(20),collection int,Time_departure float,Time_arrival float,T_date date,busno varchar(20),primary key(trip_id,Time_departure,T_date),foreign key(driver_id) references employee(emp_id),foreign key(conductor_id) references employee(emp_id),foreign key(trip_id) references route,foreign key(busno) references bus);
